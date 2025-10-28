@@ -1,6 +1,7 @@
 import welcomeTo from "./welcome-to.svg"
 import logo from "./logo.svg";
 import logo2 from "./logo2.svg";
+import comingSoon from "./comingsoon.svg";
 
 export function Welcome() {
   return (
@@ -25,6 +26,13 @@ export function Welcome() {
         <pre className="w-full p-4 overflow-x-auto">
           <code>welcome</code>
         </pre>
+        <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
+          <img
+            src={comingSoon}
+            alt="Coming soon (eta 30 days)"
+            className="hidden w-full dark:block"
+          />
+        </div>
       </div>
     </main>
   );
