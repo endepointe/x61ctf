@@ -24,7 +24,13 @@ export function Welcome() {
           </div>
         </header>
         <pre className="w-full p-4 overflow-x-auto">
-          <code>welcome</code>
+          <code class="language-python">
+{`
+                    cipher1 = 1001 
+                            cipher2 = 0111 
+                                    print("recover the keyspace and plaintexts")
+`}
+          </code>
         </pre>
         <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
           <img
