@@ -1,0 +1,203 @@
+{
+  "main": {
+    "id": "7f195ba8722b0a7c",
+    "type": "split",
+    "children": [
+      {
+        "id": "12768e17c3e38b5f",
+        "type": "tabs",
+        "dimension": 24.238578680203045,
+        "children": [
+          {
+            "id": "ef3ac577351c24e7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Welcome.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Welcome"
+            }
+          }
+        ]
+      },
+      {
+        "id": "9843ece1032fba8e",
+        "type": "tabs",
+        "dimension": 75.76142131979695,
+        "children": [
+          {
+            "id": "cc81e34293962452",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "archi.canvas",
+                "viewState": {
+                  "x": -130,
+                  "y": 30,
+                  "zoom": -0.08476206167796159
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "archi"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "29dba5a2814870b6",
+    "type": "split",
+    "children": [
+      {
+        "id": "c0916fd8195629d7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d2b06bfecced4547",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "db19d9abf5a46f75",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "12740274b5c9e923",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "560b95f5c8e7052c",
+    "type": "split",
+    "children": [
+      {
+        "id": "d5593df8a020a721",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bc56cbb50836ee25",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "archi.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for archi"
+            }
+          },
+          {
+            "id": "4a57ffd8fe366d19",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "archi.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from archi"
+            }
+          },
+          {
+            "id": "14f7f487c2c7c9fe",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "f47616c975c11896",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "archi.canvas",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of archi"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "cc81e34293962452",
+  "lastOpenFiles": [
+    "Untitled.base",
+    "archi.canvas",
+    "Welcome.md"
+  ]
+}

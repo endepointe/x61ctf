@@ -1,0 +1,8 @@
+{
+	"nodes":[
+		{"id":"cbb4a0bae7cc957e","type":"text","text":"","x":-180,"y":440,"width":250,"height":60},
+		{"id":"282ce781babe1dd8","type":"text","text":"Backend - DO:\n\n- Challenge containers","x":-240,"y":-400,"width":562,"height":600},
+		{"id":"b6068068937ba64c","type":"text","text":"Frontend - Cloudflare Page\n\n- Portal to:\n\t- /challenges\n\t- /submit\n\t- /scoreboard\n\nScoreboard endpoint back up with D1 tables.\n","x":-700,"y":-280,"width":400,"height":460}
+	],
+	"edges":[]
+}
