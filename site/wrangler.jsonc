@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "my-worker",
-  "main": "src/index.ts",
+  "main": "workers/index.ts",
   "compatibility_date": "2022-07-12"
 }
