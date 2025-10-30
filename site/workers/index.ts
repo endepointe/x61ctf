@@ -13,6 +13,5 @@ export default {
       .run();
       return Response.json(results);
     }
-    return null;
   },
 } satisfies ExportedHandler<Env>;
