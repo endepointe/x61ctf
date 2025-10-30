@@ -3,7 +3,7 @@
 	"description": "Build a full-stack web application with React Router 7.",
 	"private": true,
 	"cloudflare": {
-		"label": "React Router Framework Starter",
+		"label": "x61ctf challenge portal",
 		"products": [
 			"Workers"
 		],
