@@ -1,4 +1,4 @@
 export function onRequest(context) { 
-  console.log(context);
+  alert("there you are");
   return new Response("you have reached /api/challenges");
 }

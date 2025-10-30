@@ -1,6 +1,14 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "my-worker",
-  "main": "workers/index.ts",
-  "compatibility_date": "2022-07-12"
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "my-worker",
+	"main": "workers/index.ts",
+	"compatibility_date": "2022-07-12",
+	"d1_databases": [
+		{
+			"binding": "x61ctf_d1_db",
+			"database_name": "x61ctf-d1-db",
+			"database_id": "f829ef1b-2f3b-4074-b883-28c220298276",
+			"remote": true
+		}
+	]
 }

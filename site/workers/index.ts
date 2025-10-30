@@ -1,16 +1,13 @@
+export interface Env { 
+  x61ctf_d1_db: D1Database;
+};
+
 export default {
   async fetch(request, env): Promise<Response> {
     const { pathname } = new URL(request.url);
-    console.log(pathname);
-
     if (pathname === "/api/challenges") {
-      const results = [{ id: 1, name: "…" }];
-      console.log(results);
-      return Response.json(results);
+      return "nothingbcthisisneverreached";//Response.json(results);
     }
-
-    return new Response(
-      "Call /api/challenges to see all challenges",
-    );
+    return null;
   },
-} satisfies ExportedHandler;
+} satisfies ExportedHandler<Env>;
