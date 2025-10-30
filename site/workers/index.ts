@@ -5,7 +5,7 @@ export interface Env {
 export default {
   async fetch(request, env): Promise<Response> {
     const { pathname } = new URL(request.url);
-    if (pathname === "/api/challenges") {
+    if (pathname === "/challenges") {
       return Response.json(results);
     }
     return null;
