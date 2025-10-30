@@ -1,8 +1,5 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "my-worker",
-	"main": "workers/index.ts",
-	"compatibility_date": "2022-07-12",
 	"d1_databases": [
 		{
 			"binding": "x61ctf_d1_db",

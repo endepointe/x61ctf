@@ -1,4 +1,4 @@
-export interface Env { 
+interface Env { 
   x61ctf_d1_db: D1Database;
 };
 
