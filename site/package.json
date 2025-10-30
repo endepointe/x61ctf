@@ -1,46 +1,33 @@
 {
-	"name": "x61ctf",
-	"description": "Build a full-stack web application with React Router 7.",
+	"name": "site",
 	"private": true,
-	"cloudflare": {
-		"label": "x61ctf challenge portal",
-		"products": [
-			"Workers"
-		],
-		"categories": [
-			"storage"
-		],
-		"preview_icon_url": "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/36a99c4a-8919-4e6e-ac9e-e55974407200/public",
-		"preview_image_url": "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/65455e96-7992-425f-44e4-30f3e7d7f900/preview",
-		"publish": true
-	},
-	"dependencies": {
-		"isbot": "5.1.26",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0",
-		"react-router": "7.6.3"
-	},
-	"devDependencies": {
-		"@cloudflare/vite-plugin": "1.7.5",
-		"@react-router/dev": "7.6.3",
-		"@tailwindcss/vite": "4.1.4",
-		"@types/node": "^24.0.4",
-		"@types/react": "^19.0.0",
-		"@types/react-dom": "^19.0.0",
-		"tailwindcss": "4.1.1",
-		"typescript": "5.8.3",
-		"vite": "^6.0.0",
-		"vite-tsconfig-paths": "5.1.4",
-		"wrangler": "^4.45.2"
-	},
+	"type": "module",
 	"scripts": {
 		"build": "react-router build",
-		"cf-typegen": "wrangler types && react-router typegen",
-		"check": "tsc && react-router build && wrangler deploy --dry-run",
-		"deploy": "wrangler deploy",
+		"cf-typegen": "wrangler types",
+		"deploy": "pnpm run build && wrangler deploy",
 		"dev": "react-router dev",
-		"preview": "npm run build && vite preview",
-		"typecheck": "npm run typegen && tsc -b"
+		"postinstall": "npm run cf-typegen",
+		"preview": "pnpm run build && vite preview",
+		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
 	},
-	"type": "module"
+	"dependencies": {
+		"isbot": "^5.1.31",
+		"react": "^19.1.1",
+		"react-dom": "^19.1.1",
+		"react-router": "^7.9.2"
+	},
+	"devDependencies": {
+		"@cloudflare/vite-plugin": "^1.13.5",
+		"@react-router/dev": "^7.9.2",
+		"@tailwindcss/vite": "^4.1.13",
+		"@types/node": "^22",
+		"@types/react": "^19.1.13",
+		"@types/react-dom": "^19.1.9",
+		"tailwindcss": "^4.1.13",
+		"typescript": "^5.9.2",
+		"vite": "^7.1.7",
+		"vite-tsconfig-paths": "^5.1.4",
+		"wrangler": "^4.45.3"
+	}
 }
