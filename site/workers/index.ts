@@ -11,4 +11,4 @@ export default {
       "Call /api/challenges to see all challenges",
     );
   },
-} satisfies ExportedHandler<String>;
+} satisfies ExportedHandler;
