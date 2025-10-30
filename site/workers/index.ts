@@ -4,6 +4,8 @@ export default {
     console.log(pathname);
 
     if (pathname === "/api/challenges") {
+      const results = [{ id: 1, name: "…" }];
+      console.log(results);
       return Response.json(results);
     }
 
