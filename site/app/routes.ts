@@ -6,4 +6,5 @@ import {
 
 export default [
   index("routes/home.tsx"),
+  route("challenges", "challenges/challenges.tsx"),
 ] satisfies RouteConfig;

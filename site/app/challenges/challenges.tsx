@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 type ChallengeProps = {
   /** Provide content per box. If omitted, placeholders render. */
@@ -17,6 +17,22 @@ const Challenges: React.FC<ChallengeProps> = ({
   className = "",
   gapClass = "gap-4",
 }) => {
+
+  useEffect(() => { 
+    (async () => {
+      try {
+        const res = await fetch("/api/challenges");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        console.log(data);
+      } catch (e: any) {
+        setError(e.message ?? String(e));
+      } finally {
+        return;
+      }
+    })();
+  }, []);
+
   const cells = items ?? Array.from({ length: count }, (_, i) => (
     <div
       key={i}

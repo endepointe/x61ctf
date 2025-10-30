@@ -9,6 +9,11 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 }
 
 /*
+export const onRequest: PagesFunction<Env> = async (context) => { 
+  const ps = context.env.x61ctf_d1_db.prepare("select * from Customers");
+  const data = await ps.first();
+  return Response.json(data);
+}
 export async function onRequest(context) { 
   const { results } = await env.x61ctf_d1_db.prepare(
     "SELECT * FROM Customers WHERE CompanyName = ?",
