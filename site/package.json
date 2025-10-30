@@ -4,12 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "cf-typegen":"wrangler types",
-    "deploy":"pnpm run build && wrangler deploy",
-    "dev":"react-router dev",
-    "postinstall":"pnpm run cf-typegen",
-    "preview":"pnpm run build && vite preview",
-    "typecheck":"pnpm run cf-typegen && react-router typegen && tsc -b"
+    "cf-typegen": "wrangler types",
+    "deploy": "pnpm run build && wrangler deploy",
+    "dev": "react-router dev",
+    "postinstall": "pnpm run cf-typegen",
+    "preview": "pnpm run build && vite preview",
+    "typecheck": "pnpm run cf-typegen && react-router typegen && tsc -b"
   },
   "dependencies": {
     "isbot": "^5.1.31",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.13.17",
     "@react-router/dev": "^7.9.2",
+    "@react-router/node": "^7.9.5",
     "@tailwindcss/vite": "^4.1.13",
     "@types/node": "^22",
     "@types/react": "^19.1.13",
