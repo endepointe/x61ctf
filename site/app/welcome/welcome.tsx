@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import logo2 from "./logo2.svg";
 import comingSoon from "./comingsoon.svg";
 
-export function Welcome() {
+export default function Welcome() {
   return (
     <main className="min-h-screen flex justify-center pt-16 pb-6 px-4 sm:px-6">
       <div className="w-full max-w-5xl flex flex-col items-center gap-10 sm:gap-14">
