@@ -1,5 +1,7 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "x61ctf",
+  "pages_build_output_dir": "./build/client",
 	"compatibility_date": "2022-07-12",
 	"d1_databases": [
 		{
@@ -8,5 +10,5 @@
 			"database_id": "f829ef1b-2f3b-4074-b883-28c220298276",
 			"remote": true
 		}
-	]
+  ]
 }
