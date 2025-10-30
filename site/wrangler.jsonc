@@ -38,7 +38,7 @@
 	 * https://developers.cloudflare.com/workers/static-assets/binding/
 	 */
 	"assets": { 
-    "directory": "./build/client/", 
+    "directory": "./dist/client/", 
     "binding": "ASSETS"
     //"not_found_handling": "single-page-application"
   }
