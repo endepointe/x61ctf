@@ -1,5 +1,4 @@
 import type { Route } from "./+types/home";
-import { Link, Outlet } from "react-router";
 import { Welcome } from "../welcome/welcome.tsx";
 
 export function meta({}: Route.MetaArgs) {
