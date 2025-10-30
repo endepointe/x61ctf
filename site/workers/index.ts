@@ -6,7 +6,7 @@ export default {
   async fetch(request, env): Promise<Response> {
     const { pathname } = new URL(request.url);
     if (pathname === "/api/challenges") {
-      return "nothingbcthisisneverreached";//Response.json(results);
+      return Response.json(results);
     }
     return null;
   },
