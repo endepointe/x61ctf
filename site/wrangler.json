@@ -48,14 +48,14 @@
 	 * Static Assets
 	 * https://developers.cloudflare.com/workers/static-assets/binding/
 	 */
-	"assets": { "directory": "./build/client/", "binding": "ASSETS" }
+	"assets": { "directory": "./build/client/assets", "binding": "ASSETS" },
 	/**
 	 * Service Bindings (communicate between multiple Workers)
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
 	 */
 	// "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
 	//"upload_source_maps": true,
-	//"vars": {
-  //		"VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
-	//}
+	"vars": {
+  		"VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
+	}
 }
