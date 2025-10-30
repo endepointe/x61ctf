@@ -3,7 +3,7 @@ export interface Env {
 };
 
 export const onRequest: PagesFunction<Env> = async (context) => { 
-  const ps = context.env.x61ctf_d1_db.prepare.("select * from Customers");
+  const ps = context.env.x61ctf_d1_db.prepare("select * from Customers");
   const data = await ps.first();
   return Response.json(data);
 }
