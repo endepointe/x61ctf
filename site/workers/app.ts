@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { createRequestHandler } from "react-router";
 
 declare module "react-router" {
@@ -49,23 +50,26 @@ export default {
 //  x61ctf_d1_db: D1Database;
 //}
 /*
-export default {
-  async fetch(request: Request, env: { ASSETS: Fetcher }): Promise<Response> {
-    const { pathname } = new URL(request.url);
+=======
 
-    if (pathname === "/beverages") {
+>>>>>>> delta
+export default {
+  async fetch(request: Request): Promise<Response> {
+    const { pathname } = new URL(request.url);
+    if (pathname === "/challenges") {
       // If you did not use `DB` as your binding name, change it here
       //const { res } = await env.x61ctf_d1_db.prepare("SELECT * FROM Customers");
-      const results = { name: "hello", value: "world" };
+      const results = { name: "reached", value: "challenges" };
       return Response.json(results);
     }
-
     if (pathname === "/env") {
-      return Response.json({ env });
+      return Response.json({ value: "/env" });
     }
-    
-    return await env.ASSETS.fetch(request);
+    return Response.json({ name: "hello", value: "world" });
   }
 } satisfies ExportedHandler;
+<<<<<<< HEAD
 */
+=======
+>>>>>>> delta
 
