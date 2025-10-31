@@ -2,6 +2,7 @@ import welcomeTo from "./welcome-to.svg"
 import logo from "./logo.svg";
 import logo2 from "./logo2.svg";
 import comingSoon from "./comingsoon.svg";
+import { useEffect } from "react";
 
 export default function Welcome() {
   return (
