@@ -5,11 +5,7 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "x61ctf",
-<<<<<<< HEAD
-	"compatibility_date": "2025-04-04",
-=======
 	"compatibility_date": "2025-10-30",
->>>>>>> delta
 	"main": "./workers/app.ts",
 	//"vars": {
 	//	"VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
