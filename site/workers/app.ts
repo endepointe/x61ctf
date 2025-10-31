@@ -22,7 +22,7 @@
 //  },
 //} satisfies ExportedHandler<Env>;
 //
-import { WorkerEntrypoint } from "cloudflare:workers";
+//import { WorkerEntrypoint } from "cloudflare:workers";
 //export default class extends WorkerEntrypoint {
 //  async fetch(request: Request) {
 //    return new Response("x61ctf");
@@ -35,8 +35,8 @@ import { WorkerEntrypoint } from "cloudflare:workers";
 //  x61ctf_d1_db: D1Database;
 //}
 
-export default class extends WorkerEntrypoint {
-  async fetch(request: Request) {
+export default {
+  async fetch(request: Request, env: { ASSETS: Fetcher }): Promise<Response> {
     const { pathname } = new URL(request.url);
 
     if (pathname === "/beverages") {
@@ -45,9 +45,11 @@ export default class extends WorkerEntrypoint {
       const results = { name: "hello", value: "world" };
       return Response.json(results);
     }
+
+    if (pathname === "/env") {
+      return Response.json({ env });
+    }
     
-    return new Response(
-      "Call /beverages to see everyone who works at Bs Beverages",
-    );
+    return await env.ASSETS.fetch(request);
   }
-} 
+} satisfies ExportedHandler;
