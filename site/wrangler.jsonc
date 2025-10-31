@@ -38,7 +38,8 @@
 	 * https://developers.cloudflare.com/workers/static-assets/binding/
 	 */
 	"assets": { 
-    "directory": "build"
+    "directory": "build",
+    "not_found_handling": "single-page-application"
   }
 	/**
 	 * Service Bindings (communicate between multiple Workers)
