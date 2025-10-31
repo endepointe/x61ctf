@@ -2,6 +2,7 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -23,6 +24,18 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+function Nav() {
+  return (
+    <nav>
+      <NavLink to="/" end>
+        Home
+      </NavLink>
+      <NavLink to="/challenges">Challenges</NavLink>
+    </nav>
+  );
+}
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -33,6 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <Nav />
         {children}
         <ScrollRestoration />
         <Scripts />
