@@ -25,8 +25,6 @@ const Challenges: React.FC<ChallengeGridProps> = ({
         const res = await fetch("/api/challenges");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        console.log("should be loading");
-        console.log(data);
         setChallenges(data);
       } catch (e: any) {
         setError(e.message ?? String(e));

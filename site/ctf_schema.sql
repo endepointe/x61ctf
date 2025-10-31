@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS Challenges (
 );
 
 INSERT INTO Challenges (ChallengeName, ChallengeLocation) 
-VALUES ("otp", "nc 127.0.0.1 311337"), ("web","127.0.0.1:7878"), ("rev","ftp://127.0.0.1");
+VALUES ("otp", "nc 127.0.0.1 311337"), ("web","127.0.0.1:7878"), ("rev","http://127.0.0.1/download/binary");
