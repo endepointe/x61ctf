@@ -1,6 +1,3 @@
-# Welcome to x61ctf
-
----
 
 # Welcome to x61ctf: A Capture the Flag Platform 
 
