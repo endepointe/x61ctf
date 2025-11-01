@@ -136,22 +136,22 @@ function Nav() {
 
         {/* Desktop links */}
         <div className="hidden sm:flex items-center gap-1">
-          <NavLink to="/" end className={linkClass} onClick={handleLinkClick}>
-            <IconShieldKeyhole className={iconCls} />
-            <span>Home</span>
-          </NavLink>
-          <NavLink to="/trending" end className={linkClass} onClick={handleLinkClick}>
-            <IconWaveProbe className={iconCls} />
-            <span>Trending</span>
-          </NavLink>
-          <NavLink to="/concerts" className={linkClass} onClick={handleLinkClick}>
-            <IconCipherWheel className={iconCls} />
-            <span>All Concerts</span>
-          </NavLink>
-          <NavLink to="/account" className={linkClass} onClick={handleLinkClick}>
-            <IconKeycard className={iconCls} />
-            <span>Account</span>
-          </NavLink>
+            <NavLink to="/" end className={linkClass} onClick={handleLinkClick}>
+              <IconShieldKeyhole className={iconCls} />
+              <span>Home</span>
+            </NavLink>
+            <NavLink to="/rules" end className={linkClass} onClick={handleLinkClick}>
+              <IconWaveProbe className={iconCls} />
+              <span>Rules(todo)</span>
+            </NavLink>
+            <NavLink to="/challenges" className={linkClass} onClick={handleLinkClick}>
+              <IconCipherWheel className={iconCls} />
+              <span>Challenges</span>
+            </NavLink>
+            <NavLink to="/account" className={linkClass} onClick={handleLinkClick}>
+              <IconKeycard className={iconCls} />
+              <span>Account(todo)</span>
+            </NavLink>
         </div>
 
         {/* Mobile hamburger */}
