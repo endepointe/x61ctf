@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" width="520" height="140" role="img" aria-labelledby="title desc">
+  <title id="title">Glitch text: x61ctf (static compat)</title>
+  <desc id="desc">Static RGB split and scanlines for broad browser compatibility.</desc>
+
+  <rect width="100%" height="100%" fill="#0b0d12"/>
+
+  <defs>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="#ffffff" fill-opacity="0.025"/>
+      <rect y="2" width="4" height="2" fill="#000000" fill-opacity="0.09"/>
+    </pattern>
+  </defs>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
+     font-weight="800" font-size="96" text-anchor="start" letter-spacing="2">
+    <!-- slight inner margin -->
+    <text x="12" y="100" fill="#00eaff" transform="translate(3,-1)">x61ctf</text>
+    <text x="12" y="100" fill="#ff2b70" transform="translate(-2,1)">x61ctf</text>
+    <text x="12" y="100" fill="#eaf2ff">x61ctf</text>
+  </g>
+
+  <rect width="100%" height="100%" fill="url(#scan)" opacity="0.32" pointer-events="none"/>
+</svg>
+
