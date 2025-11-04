@@ -72,7 +72,7 @@ export default function Welcome() {
             <img
               src={welcomeToSrc}
               alt="welcome to"
-              className="w-full dark:block"
+              className="w-full block"
             />
           </div>
 
@@ -80,7 +80,7 @@ export default function Welcome() {
             <img
               src={logo2}
               alt="x61ctf"
-              className="w-full dark:block"
+              className="w-full block"
             />
           </div>
         </header>
@@ -95,7 +95,7 @@ print("recover the keyspace and plaintexts")`}</code>
           <img
             src={comingSoonSrc}
             alt="Coming soon (eta 30 days)"
-            className="dark:block w-full max-w-xs sm:max-w-md md:max-w-2xl"
+            className="block w-full max-w-xs sm:max-w-md md:max-w-2xl"
           />
         </div>
       </div>
