@@ -38,9 +38,9 @@
 | ------------------------- | ---------------------- | ------------------------------------------------------------------ | -------------------- |
 | **Frontend React Portal** | Cloudflare Pages       | List challenges, handle submissions, display team info             | React + Tailwind     |
 | **API / business logic**  | Cloudflare Workers     | `/challenges`, `/submit`, `/scoreboard` endpoints, flag validation | Workers (TypeScript) |
-| **Source of Truth DB**    | Cloudflare D1          | Stores flags, challenges, solves, users, teams                     | SQLite (D1)          |
-| **Scoreboard**            | (AWS/Azure/Cloudflare) | Team ranking UI and admin controls                                 | **CTFd**             |
-| **Challenge Instances**   | DigitalOcean VPS       | Individual challenges (web, pwn, misc) encapsulated in Docker      | Docker + Terraform   |
+| **Source of Truth DB**    | Digitalocean VPS       | Stores flags, challenges, solves, users, teams                     | SQLite               |
+| **Scoreboard**            | Digitalocean VPS       | Team ranking UI and admin controls                                 | **CTFd**             |
+| **Challenge Instances**   | EC2 Instances          | Individual challenges (web, pwn, misc) encapsulated in Docker      | Docker + Terraform   |
 
 ---
 
@@ -49,7 +49,7 @@
 1. **Developer adds challenge**
 
    * Write challenge files (`/challenges/<slug>/Dockerfile`).
-   * Add metadata + correct flag (hashed) into D1 via a CLI script.
+   * Add metadata + correct flag (hashed) into SQLite via a CLI script.
 
 2. **Terraform deployment**
 
@@ -204,4 +204,6 @@ resource "docker_container" "web1" {
 MIT 
 
 ---
+
+
 

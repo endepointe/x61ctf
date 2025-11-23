@@ -1,0 +1,12 @@
+
+
+
+A user visits x61ctf.xyz and selects a challenge.
+
+If they have a valid session cookie, they are given access to the available 
+challenges.
+
+When the use has a suspected flag in hand, they return to the x61ctf.xyz 
+challenge page and submit the flag.
+
+The submission makes an api call 
