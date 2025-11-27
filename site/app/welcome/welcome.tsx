@@ -1,9 +1,3 @@
-/*
-import welcomeTo from "./welcome-to.svg"
-import logo from "./logo.svg";
-import logo2 from "./logo2.svg";
-import comingSoon from "./comingsoon.svg";
-*/
 
 // Animated versions (your originals with animation)
 import welcomeToAnimated from "./welcome-to.svg";
