@@ -1,7 +1,0 @@
-{
-	"nodes":[
-		{"id":"282ce781babe1dd8","type":"text","text":"Backend - DO:\n\n- Challenge containers","x":-180,"y":-440,"width":562,"height":600},
-		{"id":"b6068068937ba64c","type":"text","text":"Frontend - Cloudflare Page\n\n- D1 Worker API:\n\t- GET /challenges:\n\t\t- Displays static page of a list of challenges.\n\t\t\t- Example: [ {name, source}, ... ]\n\t\treturns status\n\t- POST /submit \n\t\t- token: jwt\n\t\t- body: {user = null, name, flag}\n\t\tNOTE: rate limit\n\t\treturns msg\n\t- GET /scoreboard:\n\t\t- Displays CTFd dashboard running on backend (DO)\n\t\treturns status\n\n\nD1 Tables:\n\n- Users\n- Teams\n- Team_Members\n- Challenges\n- Challenge_Flags\n- Submissions\n- Solves","x":-900,"y":-440,"width":600,"height":640}
-	],
-	"edges":[]
-}
