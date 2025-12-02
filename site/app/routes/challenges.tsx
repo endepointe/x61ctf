@@ -22,7 +22,11 @@ const Challenges: React.FC<ChallengeGridProps> = ({
   useEffect(() => { 
     (async () => {
       try {
-        const res = await fetch("/api/challenges");
+        // this is a test api running from a docker container within local
+        // network.
+        const res = await fetch("http://10.0.0.182:4567/api/challenges");
+        console.log(res);
+        return;
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         setChallenges(data);

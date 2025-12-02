@@ -4,36 +4,47 @@ import {
 } from "react-router";
 
 import { 
-  AuthenticatedTemplate, UnauthenticatedTemplate, 
-  useMsal 
-} from "@azure/msal-react"
-
-import { loginRequest } from "../../authConfig.js";
-
-import { 
   IconShieldKeyhole,
   IconWaveProbe,
   IconCipherWheel,
   IconKeycard,
   IconMenu,
   IconClose,
+  IconLogin,
+  IconLogout,
 } from "../icons/icons.tsx"
+import { 
+  MsalProvider, AuthenticatedTemplate, 
+  useMsal, UnauthenticatedTemplate 
+} from '@azure/msal-react';
+import { loginRequest } from "../../authConfig";
 
 export default function Nav() {
-  const { instance } = useMsal();
   const [open, setOpen] = useState(false);
   const handleLinkClick = useCallback(() => setOpen(false), []);
+  const { instance } = useMsal();
+  const activeAccount = instance.getActiveAccount();
 
   const handleLoginRedirect = () => {
-    instance.loginRedirect(loginRequest).catch((error) => console.log(error));
-  }
+      instance.loginRedirect(loginRequest).catch((error) => console.log(error));
+  };
 
   const handleLogoutRedirect = () => {
-    instance.logoutRedirect().catch((error) => console.log(error));
-  }
+      instance.logoutRedirect().catch((error) => console.log(error));
+  };
 
+
+  const handleRedirect = () => {
+      instance
+          .loginRedirect({
+              ...loginRequest,
+              prompt: 'create',
+          })
+          .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
+    console.log(instance);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
@@ -76,10 +87,26 @@ export default function Nav() {
               <IconCipherWheel className={iconCls} />
               <span>Challenges</span>
             </NavLink>
-            <NavLink to="/account" className={linkClass} onClick={() => console.log("somethingsomething")}>
-              <IconKeycard className={iconCls} />
-              <span>Account(todo)</span>
-            </NavLink>
+            <AuthenticatedTemplate>
+            { activeAccount ? (
+              <>
+              <NavLink to="/account" className={linkClass} 
+                state={ activeAccount }
+                onClick={() => console.log("somethingsomething")}>
+                <IconKeycard className={iconCls} />
+                <span>Account(todo)</span>
+              </NavLink>
+              <IconLogout className={ iconCls }/>
+              </>
+            ) : null }
+            </AuthenticatedTemplate> 
+            <UnauthenticatedTemplate>
+              <button className="sm:flex"
+                onClick={handleLoginRedirect}>
+                <span>Signin</span>
+                <IconLogin className={ iconCls }/>
+              </button>
+            </UnauthenticatedTemplate>
         </div>
 
         {/* Mobile hamburger */}
@@ -116,12 +143,10 @@ export default function Nav() {
               <IconCipherWheel className={iconCls} />
               <span>Challenges</span>
             </NavLink>
-
             <NavLink to="/account" className={linkClass} onClick={handleLinkClick}>
               <IconKeycard className={iconCls} />
               <span>Account(todo)</span>
             </NavLink>
-
           </div>
         </div>
       </div>

@@ -8,15 +8,30 @@ import {
 } from "react-router";
 import { useState, useEffect, useCallback } from "react";
 
+import { MsalProvider, useMsal } from "@azure/msal-react";
+import { PublicClientApplication, EventType } from '@azure/msal-browser';
+import { msalConfig } from "./authConfig.js";
+
 import type { Route } from "./+types/root";
 import "./app.css";
 
 import Nav from "./components/navigation/nav.tsx"
 
-import { MsalProvider } from '@azure/msal-react';
-import { PublicClientApplication } from '@azure/msal-browser';
-import { msalConfig } from "./authConfig.js";
-const msalInstance = new PublicClientApplication(msalConfig);
+const pca = new PublicClientApplication(msalConfig);
+
+// Default to using the first account if no account is active on page load
+if (!pca.getActiveAccount() && pca.getAllAccounts().length > 0) {
+    // Account selection logic is app dependent. Adjust as needed for different use cases.
+    pca.setActiveAccount(pca.getAllAccounts()[0]);
+}
+
+// Listen for sign-in event and set active account
+pca.addEventCallback((event) => {
+    if (event.eventType === EventType.LOGIN_SUCCESS && event.payload.account) {
+        const account = event.payload.account;
+        pca.setActiveAccount(account);
+    }
+});
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -32,10 +47,6 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const handleRedirect = () => { 
-    instance.loginRedirect({ ...loginRequest, prompt: 'create' })
-    .catch((error) => console.log(error));
-  };
   return (
     <html lang="en">
       <head>
@@ -45,8 +56,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Nav />
-        {children}
+        <MsalProvider instance={ pca }>
+          <Nav />
+          {children}
+        </MsalProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -58,24 +71,9 @@ function HydrateFallback() {
   return (<div>TODO: fallback</div>);
 }
 
-if (!msalInstance.getActiveAccount() && msalInstance.getAllAccounts().length > 0) {
-    // Account selection logic is app dependent. Adjust as needed for different use cases.
-    msalInstance.setActiveAccount(msalInstance.getAllAccounts()[0]);
-}
-
-// Listen for sign-in event and set active account
-msalInstance.addEventCallback((event) => {
-    if (event.eventType === EventType.LOGIN_SUCCESS && event.payload.account) {
-        const account = event.payload.account;
-        msalInstance.setActiveAccount(account);
-    }
-});
-
 export default function App() {
   return (
-    <MsalProvider instance={msalInstance}>
-      <Outlet />
-    </MsalProvider>
+      <Outlet/>
   );
 }
 

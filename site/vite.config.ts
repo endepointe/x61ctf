@@ -8,4 +8,7 @@ export default defineConfig({
     reactRouter(),
     tsconfigPaths(),
   ],
+  server: { 
+    allowedHosts: ["3f607f568202.ngrok-free.app"],
+  }
 });
