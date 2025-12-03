@@ -7,31 +7,17 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { useState, useEffect, useCallback } from "react";
+import { Routes, Route } from "react-router";
 
 import { MsalProvider, useMsal } from "@azure/msal-react";
 import { PublicClientApplication, EventType } from '@azure/msal-browser';
 import { msalConfig } from "./authConfig.js";
-
+const pca = new PublicClientApplication(msalConfig);
 import type { Route } from "./+types/root";
 import "./app.css";
 
 import Nav from "./components/navigation/nav.tsx"
 
-const pca = new PublicClientApplication(msalConfig);
-
-// Default to using the first account if no account is active on page load
-if (!pca.getActiveAccount() && pca.getAllAccounts().length > 0) {
-    // Account selection logic is app dependent. Adjust as needed for different use cases.
-    pca.setActiveAccount(pca.getAllAccounts()[0]);
-}
-
-// Listen for sign-in event and set active account
-pca.addEventCallback((event) => {
-    if (event.eventType === EventType.LOGIN_SUCCESS && event.payload.account) {
-        const account = event.payload.account;
-        pca.setActiveAccount(account);
-    }
-});
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -47,6 +33,8 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  useEffect(() =>  {
+  });
   return (
     <html lang="en">
       <head>
@@ -72,8 +60,41 @@ function HydrateFallback() {
 }
 
 export default function App() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+
+    pca.initialize().then(() =>  {
+      // Default to using the first account if no account is active on page load
+      if (!pca.getActiveAccount() && pca.getAllAccounts().length > 0) {
+          // Account selection logic is app dependent. Adjust as needed for different use cases.
+          pca.setActiveAccount(pca.getAllAccounts()[0]);
+      }
+
+      // Listen for sign-in event and set active account
+      pca.addEventCallback((event) => {
+          if (event.eventType === EventType.LOGIN_SUCCESS && event.payload.account) {
+              const account = event.payload.account;
+              console.log(account);
+              pca.setActiveAccount(account);
+          }
+      });   
+      if (mounted) setReady(true);
+    })
+    .catch((error) => {
+      console.error("fk");
+      if (mounted) setReady(true);
+    });
+
+
+  }, []);
+  
+  if (!ready) return <div>somebs</div>;
   return (
-      <Outlet/>
+    <MsalProvider instance={ pca }>
+      <Outlet />
+    </MsalProvider>
   );
 }
 

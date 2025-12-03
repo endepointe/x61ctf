@@ -26,17 +26,18 @@ export default function Nav() {
   const activeAccount = instance.getActiveAccount();
 
   const handleLoginRedirect = () => {
-      instance.loginRedirect(loginRequest).catch((error) => console.log(error));
+      instance.loginPopup(loginRequest).catch((error) => console.log(error));
+      console.log(instance);
   };
 
   const handleLogoutRedirect = () => {
-      instance.logoutRedirect().catch((error) => console.log(error));
+      instance.logoutPopup().catch((error) => console.log(error));
   };
 
 
   const handleRedirect = () => {
       instance
-          .loginRedirect({
+          .loginPopup({
               ...loginRequest,
               prompt: 'create',
           })
@@ -44,7 +45,6 @@ export default function Nav() {
   };
 
   useEffect(() => {
-    console.log(instance);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
@@ -90,13 +90,16 @@ export default function Nav() {
             <AuthenticatedTemplate>
             { activeAccount ? (
               <>
-              <NavLink to="/account" className={linkClass} 
-                state={ activeAccount }
-                onClick={() => console.log("somethingsomething")}>
-                <IconKeycard className={iconCls} />
-                <span>Account(todo)</span>
-              </NavLink>
-              <IconLogout className={ iconCls }/>
+                <NavLink to="/account" className={linkClass} 
+                  state={ activeAccount }>
+                  <IconKeycard className={iconCls} />
+                  <span>Account(todo)</span>
+                </NavLink>
+                <button className="sm:flex"
+                  onClick={handleLogoutRedirect}>
+                  <span>Signout</span>
+                  <IconLogout className={ iconCls }/>
+                </button>
               </>
             ) : null }
             </AuthenticatedTemplate> 

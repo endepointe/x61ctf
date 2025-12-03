@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 
 // type returned from DB query
 type Challenge = {
-  ChallengeId: number;
-  ChallengeName: string;
-  ChallengeLocation: string;
+  id: number;
+  name: string;
+  location: string;
 };
 
 type ChallengeGridProps = {
@@ -24,12 +24,12 @@ const Challenges: React.FC<ChallengeGridProps> = ({
       try {
         // this is a test api running from a docker container within local
         // network.
-        const res = await fetch("http://10.0.0.182:4567/api/challenges");
+        const res = await fetch(import.meta.env.VITE_FASTAPI_URL + "/challenges");
         console.log(res);
-        return;
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        setChallenges(data);
+        console.log(data);
+        setChallenges(data.challenges);
       } catch (e: any) {
         setError(e.message ?? String(e));
       } finally {
@@ -50,7 +50,7 @@ const Challenges: React.FC<ChallengeGridProps> = ({
     >
       {challenges?.map((c) => (
         <div
-          key={c.ChallengeId}
+          key={c.id}
           className={[
             "w-[300px] h-[250px]",
             "rounded-xl border border-neutral-700 bg-neutral-800/60",
@@ -61,11 +61,11 @@ const Challenges: React.FC<ChallengeGridProps> = ({
         >
           <div className="flex flex-col space-y-2">
             <h2 className="text-xl font-bold capitalize tracking-wide">
-              {c.ChallengeName}
+              {c.name}
             </h2>
 
             <p className="text-sm text-neutral-400 break-words">
-              {c.ChallengeLocation}
+              {c.location}
             </p>
           </div>
 

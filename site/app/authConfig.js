@@ -1,11 +1,9 @@
 import { LogLevel } from '@azure/msal-browser';
-
 /**
  * Configuration object to be passed to MSAL instance on creation.
  * For a full list of MSAL.js configuration parameters, visit:
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md 
  */
-
 export const msalConfig = {
     auth: {
         clientId: import.meta.env.VITE_ENTRA_CLIENT_ID, // This is the ONLY mandatory field that you need to supply.
@@ -52,9 +50,11 @@ export const msalConfig = {
  * https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: [],
+    scopes: ["User.Read"],
 };
-
+export const graphConfig = {
+    graphMeEndpoint: "https://graph.microsoft.com/v1.0/me"
+};
 /**
  * An optional silentRequest object can be used to achieve silent SSO
  * between applications by providing a "login_hint" property.

@@ -1,4 +1,7 @@
 
+
+// mv this to ./components/welcome/welcome.tsx
+//
 // Animated versions (your originals with animation)
 import welcomeToAnimated from "./welcome-to.svg";
 import comingSoonAnimated from "./comingsoon.svg";
