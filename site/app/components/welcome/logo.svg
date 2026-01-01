@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300" role="img" aria-labelledby="title desc">
+  <title id="title">Glitch text: x61ctf</title>
+  <desc id="desc">Animated RGB split, noise displacement, and jitter applied to the text x61ctf for a glitch effect.</desc>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0b0d12"/>
+
+  <defs>
+    <!-- Noisy displacement filter (animated) -->
+    <filter id="glitchNoise" x="-20%" y="-40%" width="140%" height="180%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="noise">
+        <animate attributeName="baseFrequency"
+                 values="0.9;0.2;0.6;0.1;0.9"
+                 dur="2.2s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale"
+                 values="0;12;3;18;0;8;0"
+                 keyTimes="0;0.1;0.25;0.4;0.6;0.8;1"
+                 dur="1.8s" repeatCount="indefinite"/>
+      </feDisplacementMap>
+    </filter>
+
+    <!-- Hard horizontal slice mask that jitters to create aggressive glitch bursts -->
+    <mask id="sliceMask">
+      <rect width="100%" height="100%" fill="white"/>
+      <!-- Cut some moving horizontal bands out -->
+      <g fill="black">
+        <rect x="-50" y="20"  width="900" height="18">
+          <animate attributeName="x" values="-50;10;-30;60;-50" dur="1.6s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="-70" y="120" width="900" height="12">
+          <animate attributeName="x" values="-70;80;-40;100;-70" dur="1.4s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="-40" y="210" width="900" height="14">
+          <animate attributeName="x" values="-40;50;-20;70;-40" dur="1.2s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+    </mask>
+
+    <!-- A soft scanline overlay -->
+    <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="rgba(255,255,255,0.025)"/>
+      <rect y="2" width="4" height="2" fill="rgba(0,0,0,0.08)"/>
+    </pattern>
+  </defs>
+
+  <!-- Text group centered -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
+     font-weight="800" font-size="140" text-anchor="middle" letter-spacing="4"
+     transform="translate(0,0)">
+
+    <!-- Back glow -->
+    <text x="400" y="180" fill="#00f0ff" opacity="0.12" style="filter:url(#glitchNoise)">x61ctf</text>
+    <text x="400" y="180" fill="#ff2b70" opacity="0.10" style="filter:url(#glitchNoise)">x61ctf</text>
+
+    <!-- RGB split layers with jitter -->
+    <text id="layerCyan" x="400" y="180" fill="#00eaff" style="filter:url(#glitchNoise)">
+      x61ctf
+      <animate attributeName="x" values="400;406;398;404;400;402;400" dur="1.1s" repeatCount="indefinite"/>
+      <animate attributeName="y" values="180;178;182;179;180" dur="0.9s" repeatCount="indefinite"/>
+    </text>
+
+    <text id="layerMag" x="400" y="180" fill="#ff2b70" style="filter:url(#glitchNoise)">
+      x61ctf
+      <animate attributeName="x" values="400;395;403;397;400;399;400" dur="1.05s" repeatCount="indefinite"/>
+      <animate attributeName="y" values="180;181;179;182;180" dur="0.8s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- Main white text with slice mask (so occasional bands disappear) -->
+    <g mask="url(#sliceMask)">
+      <text id="layerMain" x="400" y="180" fill="#eaf2ff" style="filter:url(#glitchNoise)">
+        x61ctf
+        <animate attributeName="x" values="400;401;399;400;402;400" dur="0.85s" repeatCount="indefinite"/>
+      </text>
+    </g>
+  </g>
+
+  <!-- Scanline overlay -->
+  <rect width="100%" height="100%" fill="url(#scanlines)" pointer-events="none" opacity="0.35">
+    <animate attributeName="opacity" values="0.35;0.45;0.3;0.35" dur="3s" repeatCount="indefinite"/>
+  </rect>
+</svg>
+

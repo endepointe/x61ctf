@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" width="520" height="140" role="img" aria-labelledby="title desc">
+  <title id="title">Text: coming soon</title>
+  <desc id="desc">Static retro green-on-black rendering of the phrase "coming soon" with minimal margins.</desc>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0b0d12"/>
+
+  <defs>
+    <!-- Soft glow -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle terminal green gradient -->
+    <linearGradient id="terminalGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a8ff60"/>
+      <stop offset="1" stop-color="#4aff3a"/>
+    </linearGradient>
+
+    <!-- Optional faint scanlines -->
+    <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="rgba(255,255,255,0.025)"/>
+      <rect y="2" width="4" height="2" fill="rgba(0,0,0,0.08)"/>
+    </pattern>
+  </defs>
+
+  <!-- Text block with small inner padding (x=14, y=92) -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
+     font-weight="700" font-size="72" letter-spacing="1.5" text-anchor="start">
+
+    <!-- Glow layer -->
+    <text x="14" y="92" fill="#38ff3d" opacity="0.35" filter="url(#softGlow)">coming soon</text>
+    <!-- Main text -->
+    <text x="14" y="92" fill="url(#terminalGreen)">coming soon</text>
+  </g>
+
+  <!-- Very subtle frame corners -->
+  <g stroke="#1bff53" stroke-opacity="0.35" stroke-width="2">
+    <path d="M8,20 h26 M8,20 v26"/>
+    <path d="M512,20 h-26 M512,20 v26"/>
+    <path d="M8,132 h26 M8,132 v-26"/>
+    <path d="M512,132 h-26 M512,132 v-26"/>
+  </g>
+
+  <!-- Scanline overlay (remove by deleting this rect) -->
+  <rect width="100%" height="100%" fill="url(#scanlines)" opacity="0.28" pointer-events="none"/>
+</svg>
+

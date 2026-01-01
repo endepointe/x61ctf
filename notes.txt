@@ -1,0 +1,24 @@
+
+
+
+
+Unauthenticated User Flow:
+    Same as authenticated, except the user is not able to submit flags or access certain challenges.
+
+Authenticated User Flow:
+
+    User hits the /challenges route:
+        If the user does not specify a challenge category (e.g. /challenges/cryptography)
+        then the user will see a list of all the categories available to them in the 
+        unauthenticated portion of the ctf.
+
+        After the user has selected a category (e.g. cryptography), they can begin interacting with the challenge.
+
+        When the user believes they are ready to submit a flag, they can make a request to the /submit endpoint. Body {category, name, user_token, flag}
+
+        After validating the users token sent in the request body, the api recieves this request and begins looking through the database for the category table and matching name/id of the challenge.
+
+        If the category table is found, the existing flag is compared to the user's submission. If it matches, the user gets a 200 response and their name added to the player board, along with the number of attempts they took to solve the challenge.
+
+        The user can also receive hints for a specific challenge. Receiving hints reduces the amount of points they earn, even if it takes one submission attempt to solve a challenge.
+        
