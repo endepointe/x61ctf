@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      context: ./fastapi/
+      dockerfile: Dockerfile
+    container_name: x61ctf_api
+    environment:
+      CTF_DB_PATH=/data/ctf.db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ctf_data:/data
+      - ./init_db.sql:/app/init_db.sql:ro
+
+

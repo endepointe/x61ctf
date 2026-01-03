@@ -20,7 +20,7 @@ export default function Dashboard() {
       instance.acquireTokenSilent(tokenRequest).then((res) => {
         console.log(res);
         if (res.tokenType === "Bearer") {
-          callApi("http://localhost:33567/user",res.idToken).then((res) =>{  
+          callApi("http://172.18.0.1:33567/user",res.idToken).then((res) =>{  
             console.log(res);
           }).catch((err) => {
             console.error(err);

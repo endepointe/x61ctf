@@ -23,7 +23,7 @@ import inspect
 import requests
 import base64
 
-DBG = True 
+DBG = False 
 
 app = FastAPI()
 
@@ -111,21 +111,23 @@ def get_email_from_token(token: str):
         return None
 
 def verify_token_header(authorization: HTTPAuthorizationCredentials = Security(security)):
+    print("auth header", authorization)
     if not authorization:
         dprint(DBG,"Error Verifying Token:", "")
         return None
     dprint(DBG,"auth header:", authorization)
     token = authorization.credentials.strip()
-    print(token)
+    print("token:",token)
     header = jwt.get_unverified_header(token)
     dprint(DBG,"header:",header)
     jwk = find_matching_jwk(header)
     if jwk == None:
-        dprint(DBG,"Unable to verify jwk:", jwk)
+        dprint(True,"Unable to verify jwk:", jwk)
         return None
     dprint(DBG,"jwk: ",jwk)
     public_key = create_public_key(jwk['n'],jwk['e'])
     pem = create_pem_from_public_key(public_key)
+    #TODO convert exception handling to output to log files
     try:
         dprint(DBG, "Getting Claim...",None)
         claims = jwt.decode(
@@ -135,10 +137,11 @@ def verify_token_header(authorization: HTTPAuthorizationCredentials = Security(s
             audience=AZURE_CLIENT_ID,
         )
         dprint(DBG, "aud:", AZURE_CLIENT_ID)
-        dprint(DBG,"JWT is valid! Type of claims:",type(claims))
+        dprint(True,"JWT is valid! Type of claims:",type(claims))
         dprint(DBG,"Claims: ",None)
         #for claim in claims:
         #    dprint(DBG,f"\t{claim}: ",f"{claims[claim]}")
+        print(token)
         return get_email_from_token(token)#claims
     except jwt.exceptions.ExpiredSignatureError:
         print("Token has expired")
@@ -181,7 +184,8 @@ def home():
 
 @app.post("/user")
 def check_user(req: Annotated[dict, Depends(verify_token_header)]):
-    return { "data": "/user" };
+    print("req:",req)
+    return { "data": req };
 
 @app.get("/challenges/{category}")
 def challenges(category: str):
@@ -194,7 +198,6 @@ def challenges(category: str):
         { "id": 1, "name": "waffles", "location": "localhost:1234" },
         { "id": 2, "name": "a", "location": "localhost:1234" },
         { "id": 3, "name": "b", "location": "localhost:1234" },
-        { "id": 4, "name": "c", "location": "localhost:1234" },
     ]
     return { "challenges": challenges }
 
