@@ -4,3 +4,4 @@ uvicorn[standard]
 cryptography
 pyjwt
 requests
+sqlmodel

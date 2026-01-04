@@ -1,15 +1,19 @@
 services:
-  api:
-    build:
-      context: ./fastapi/
-      dockerfile: Dockerfile
-    container_name: x61ctf_api
-    environment:
-      CTF_DB_PATH=/data/ctf.db
-    ports:
-      - "8000:8000"
+  fastapi:
+    image: fastapi:dev
     volumes:
-      - ctf_data:/data
-      - ./init_db.sql:/app/init_db.sql:ro
+      - ./fastapi/app:/code/app
+    ports:
+      - "33567:81"
+    networks:
+      - x61ctfnetwork
+  postgres:
+    image: postgres:dev
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: example
 
-
+networks:
+  x61ctfnetwork:
+    external: true

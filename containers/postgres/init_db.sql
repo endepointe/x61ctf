@@ -18,8 +18,7 @@ CREATE TABLE users (
   UNIQUE (auth_provider, auth_subject)
 );
 CREATE INDEX idx_users_auth ON users (auth_provider, auth_subject);
-
-
+INSERT into users (user_id,username,email,password_hash,auth_subject,is_active) values ('allthethingsuuid','testusername','testemail','testhashpassword','testauthsubject',1);
 
 CREATE TABLE challenges (
   challenge_id     TEXT PRIMARY KEY,               -- stable id like 'twotimepad'
