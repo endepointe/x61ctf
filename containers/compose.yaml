@@ -1,19 +1,21 @@
 services:
   fastapi:
     image: fastapi:dev
+    networks:
+      - x61ctfnetwork
     volumes:
       - ./fastapi/app:/code/app
     ports:
       - "33567:81"
-    networks:
-      - x61ctfnetwork
   postgres:
     image: postgres:dev
+    networks:
+      - x61ctfnetwork
     restart: always
     shm_size: 128mb
     environment:
-      POSTGRES_PASSWORD: example
-
+      POSTGRES_USER: x61ctf
+      POSTGRES_PASSWORD: changeme 
 networks:
   x61ctfnetwork:
     external: true

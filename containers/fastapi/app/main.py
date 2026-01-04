@@ -197,7 +197,7 @@ def challenges(category: str):
     challenges = [
         { "id": 1, "name": "waffles", "location": "localhost:1234" },
         { "id": 2, "name": "a", "location": "localhost:1234" },
-        { "id": 3, "name": "c", "location": "localhost:1234" },
+        { "id": 3, "name": "b", "location": "localhost:1234" },
     ]
     return { "challenges": challenges }
 
