@@ -11,6 +11,9 @@ services:
     image: postgres:dev
     networks:
       - x61ctfnetwork
+    volumes:
+      - ./postgres/test.sql:/docker-entrypoint-initdb.d/schema.sql
+      - postgres_data:/var/lib/postgresql/data
     restart: always
     shm_size: 128mb
     environment:
@@ -19,3 +22,5 @@ services:
 networks:
   x61ctfnetwork:
     external: true
+volumes:
+  postgres_data:
