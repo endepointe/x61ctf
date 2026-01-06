@@ -8,16 +8,17 @@ services:
     ports:
       - "33567:81"
   postgres:
+    build:
+      context: ./postgres/
+      dockerfile: Dockerfile
     image: postgres:dev
     networks:
       - x61ctfnetwork
-    volumes:
-      - ./postgres/test.sql:/docker-entrypoint-initdb.d/schema.sql
-      - postgres_data:/var/lib/postgresql/data
     restart: always
     shm_size: 128mb
     environment:
       POSTGRES_USER: x61ctf
+      POSTGRES_DB: x61ctf
       POSTGRES_PASSWORD: changeme 
 networks:
   x61ctfnetwork:
