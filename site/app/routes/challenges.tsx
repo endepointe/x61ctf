@@ -2,7 +2,9 @@ import type { Route } from "./+types/challenges";
 import React, { useEffect, useState } from "react";
 import { 
   AuthenticatedTemplate, UnauthenticatedTemplate,
+  useMsal,
 } from "@azure/msal-react";
+import { callApi } from "../utils/callApi";
 
 // type returned from DB query
 type Challenge = {
@@ -21,15 +23,22 @@ const Challenges: React.FC<ChallengeGridProps> = ({
   className = "",
   gapClass = "gap-4",
 }) => {
+  const { accounts }= useMsal();
   const [challenges, setChallenges] = useState(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => { 
     (async () => {
       try {
-        // this is a test api running from a docker container within local
-        // network.
-        const res = await fetch(import.meta.env.VITE_FASTAPI_URL + "/challenges");
-        console.log(res);
+        // this is a test api running from a docker container and network 
+        // should be ip *.*.0.3. I will make this check in future.
+        console.log(accounts.length,accounts[0]);
+        if (accounts.length > 0) {
+          const {
+            idToken, idTokenClaims, localAccountId, name, username 
+          } = accounts[0];
+          console.log(name);
+        }
+        const res = await callApi(import.meta.env.VITE_FASTAPI_URL + "/challenges", "", null);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         console.log(data);
@@ -40,7 +49,7 @@ const Challenges: React.FC<ChallengeGridProps> = ({
         return;
       }
     })();
-  }, []);
+  }, [accounts]);
   return (
     <React.Fragment>
       <AuthenticatedTemplate>

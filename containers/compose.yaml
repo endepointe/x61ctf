@@ -1,5 +1,8 @@
 services:
   fastapi:
+    build:
+      context: ./fastapi/
+      dockerfile: Dockerfile
     image: fastapi:dev
     networks:
       - x61ctfnetwork

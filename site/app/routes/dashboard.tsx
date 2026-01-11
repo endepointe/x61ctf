@@ -20,7 +20,7 @@ export default function Dashboard() {
       instance.acquireTokenSilent(tokenRequest).then((res) => {
         console.log(res);
         if (res.tokenType === "Bearer") {
-          callApi("http://172.18.0.1:33567/user",res.idToken).then((res) =>{  
+          callApi(import.meta.env.VITE_FASTAPI_URL + "/user",res.idToken, null).then((res) =>{  
             console.log(res);
           }).catch((err) => {
             console.error(err);

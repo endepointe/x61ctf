@@ -27,15 +27,13 @@ DBG = False
 
 app = FastAPI()
 
-origins = [ 
-    "*"
-];
+origins = ["*"];
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET","POST","PUT"],
     allow_headers=["*"],
 )
 
@@ -103,7 +101,6 @@ def create_pem_from_public_key(public_key: rsa.RSAPublicKey) -> bytes:
 
 def get_email_from_token(token: str):
     contents = jwt.decode(token, options={'verify_signature': False})
-    print(contents)
     try:
         email = contents['email']
         return email 
@@ -113,7 +110,7 @@ def get_email_from_token(token: str):
 def verify_token_header(authorization: HTTPAuthorizationCredentials = Security(security)):
     print("auth header", authorization)
     if not authorization:
-        dprint(DBG,"Error Verifying Token:", "")
+        dprint(True,"Error Verifying Token:", "")
         return None
     dprint(DBG,"auth header:", authorization)
     token = authorization.credentials.strip()
@@ -136,11 +133,11 @@ def verify_token_header(authorization: HTTPAuthorizationCredentials = Security(s
             algorithms=['RS256'],
             audience=AZURE_CLIENT_ID,
         )
-        dprint(DBG, "aud:", AZURE_CLIENT_ID)
+        dprint(True, "aud:", AZURE_CLIENT_ID)
         dprint(True,"JWT is valid! Type of claims:",type(claims))
         dprint(DBG,"Claims: ",None)
-        #for claim in claims:
-        #    dprint(DBG,f"\t{claim}: ",f"{claims[claim]}")
+        for claim in claims:
+            dprint(DBG,f"\t{claim}: ",f"{claims[claim]}")
         print(token)
         return get_email_from_token(token)#claims
     except jwt.exceptions.ExpiredSignatureError:
@@ -187,18 +184,17 @@ def check_user(req: Annotated[dict, Depends(verify_token_header)]):
     print("req:",req)
     return { "data": req };
 
-@app.get("/challenges/{category}")
-def challenges(category: str):
-    print(category)
-    if category in categories:
-        return { category: category }
-    return { "result": "none" }
-
-    challenges = [
-        { "id": 1, "name": "waffles", "location": "localhost:1234" },
-        { "id": 2, "name": "a", "location": "localhost:1234" },
-        { "id": 3, "name": "b", "location": "localhost:1234" },
-    ]
-    return { "challenges": challenges }
-
+@app.post("/challenges")
+def challenges(req: Annotated[dict, Depends(verify_token_header)]):
+    if req is None:
+        print("print the free challenges.")
+        challenges = [
+            { "id": 1, "name": "waffles", "location": "localhost:1234" },
+            { "id": 2, "name": "a", "location": "localhost:1234" },
+            { "id": 3, "name": "b", "location": "localhost:1234" },
+        ]
+        return { "challenges": challenges }
+    elif req is not None:
+        print("the user created an account and gets access to more material")
+        return { "congrats": "you get access to more challenges" }
 
