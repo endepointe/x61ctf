@@ -1,0 +1,28 @@
+{
+  "start_node": "room_1",
+  "end_node": "room_3",
+  "rooms": {
+    "room_1": {
+      "name": "The Dusty Library",
+      "desc": "Bookshelves tower above you, smelling of old parchment.",
+      "question": "What is the square root of 64?",
+      "answer": "8",
+      "connections": ["room_2", "room_3"]
+    },
+    "room_2": {
+      "name": "The Alchemist's Lab",
+      "desc": "Green fire flickers in beakers. The air is metallic.",
+      "question": "Chemical symbol for Gold?",
+      "answer": "Au",
+      "connections": ["room_1"]
+    },
+    "room_3": {
+      "name": "The Vault",
+      "desc": "The exit! A massive gold door stands slightly ajar.",
+      "question": "What is 10 + 10?",
+      "answer": "20",
+      "connections": ["room_1"]
+    }
+  }
+}
+
